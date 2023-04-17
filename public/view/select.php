@@ -9,7 +9,6 @@ include_once '../../App/service/DatabaseConnection.php';
 $db = DatabaseConnection::getInstance();
 $stmt = $db->executeQuery('SELECT * FROM users_for_extract');
 
-
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +41,7 @@ $stmt = $db->executeQuery('SELECT * FROM users_for_extract');
         </div>
     </div>
 </nav>
-
-    <table class="table table-bordered" method="get" action="../../App/service/DatabaseConnection.php">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col" name="id">Id</th>
@@ -63,8 +61,13 @@ $stmt = $db->executeQuery('SELECT * FROM users_for_extract');
             <td name='cargo' id="cargo" type="text" class="editable-field" disabled="true"><?php echo $row['cargo']; ?></td>
             <td name='nivel' id="nivel"  type="text" class="editable-field" disabled="true"><?php echo $row['nivel']; ?></td>
             <td name='button' class="actions-button">
-                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = 'edicao.php'">Editar</button>
-                <button type="button" class="btn btn-outline-danger">Excluir</button>
+                <a href="edicao.php?id=<?= $row['id']?>">
+                    <button type="submit" class="btn btn-outline-warning">Editar</button>
+                </a>
+
+                <a href="../../App/service/delete.php?id=<?= $row['id']?>">
+                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                </a>
             </td>
         </tr>
         <?php
@@ -72,6 +75,7 @@ $stmt = $db->executeQuery('SELECT * FROM users_for_extract');
         }?>
         </tbody>
     </table>
+
 <script src="../../src/edit.js"></script>
 
 </body>

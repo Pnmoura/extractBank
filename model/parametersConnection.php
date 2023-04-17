@@ -5,26 +5,22 @@ namespace extractBank\model;
 
 use extractBank\App\service\DatabaseConnection;
 
-require 'return.php';
+require_once '../App/service/DatabaseConnection.php';
 
 $db = DatabaseConnection::getInstance();
-if ($db->connect_error) {
-    die('Conexão invalida' . $mysqli->connect_error());
-}
-echo 'Conetado ao banco local ...' . "\n\n";
 
+$stmt = $db->executeQuery('SELECT * FROM users_for_extract WHERE id = id');
 
-$result = $db->executeQuery("SELECT * FROM users_for_extract");
-
-if(!$result){
-    die('Erro ao executar a consulta no banco: ' . $mysqli->error);
-}
-
-
-$row = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $dados[] = $row;
+$users = array();
+foreach ($stmt as $row){
+    echo "Id: " . $row['id'] . "\n";
+    echo "Nome: " . $row['nome'] . "\n";
+    echo "Email: " . $row['email']. "\n";
+    echo "Cargo: " . $row['cargo']. "\n";
+    echo "Nivel: " . $row['nivel']. "\n";
+    echo "created_at :" . $row['created_at']. "\n";
+    echo "updated_at: " . $row['updated_at']. "\n\n";
 }
 
-
-echo returnHeader($dados);
+header('Content-Type: application/json');
+echo json_encode($users);

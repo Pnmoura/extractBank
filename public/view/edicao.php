@@ -5,30 +5,14 @@ declare(strict_types=1);
 use extractBank\App\service\DatabaseConnection;
 
 require_once '../../App/service/DatabaseConnection.php';
-require_once '../../App/service/atualiza.php';
 
 $db = DatabaseConnection::getInstance();
-// $id = $_GET['id'];
+$stmt = $db->executeQuery('SELECT * FROM users_for_extract WHERE id=' . $_GET['id']);
 
-$sql = "SELECT id, nome, email, cargo, nivel FROM users_for_extract WHERE id = $id";
-$stmt = $db->executeQuery($sql);
+$dados = $stmt->fetch(PDO::FETCH_ASSOC);
 
-for ($i = 0; $i < $stmt->rowCount(); $i++) {
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $id = $row['id'];
-    $nome = $row['nome'];
-    $email = $row['email'];
-    $cargo = $row['cargo'];
-    $nivel = $row['nivel'];
-
-    // Faça o que desejar com as informações trazidas pelo SELECT
-    $sql = "UPDATE users_for_extract
-            SET nome = '$nome', email = '$email', cargo = '$cargo', nivel = '$nivel'
-            WHERE id = $id";
-}
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -40,7 +24,7 @@ for ($i = 0; $i < $stmt->rowCount(); $i++) {
           rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
           crossorigin="anonymous">
     <link rel="stylesheet" href="../../src/index.css">
-    <title>Formulário</title>
+    <title>Editar</title>
 </head>
 <body>
 <!--Navbar-->
@@ -62,33 +46,39 @@ for ($i = 0; $i < $stmt->rowCount(); $i++) {
 </nav>
 
 <!--Formulário de cadastro no banco-->
-<form method="POST" action="../../App/service/atualiza.php?id=<?php echo $id?>&nome=<?php echo $nome?>&email=<?php echo $email?>&cargo=<?php echo $cargo?>&nivel=<?php echo $nivel?>">
-   <div class="row g-3">
+<form method="POST" action="../../App/service/atualiza.php">
+
+    <div class="row g-3">
+        <input type="hidden" name="id" value="<?= $dados['id']?>">
         <label for="nome">Nome:</label>
-        <input type="nome" name='$nome' value="<?php echo $nome ?>" id="nome" class="form-control" placeholder="Digite o seu nome:"
+        <input type="text" name='nome' value="<?= $dados['nome']; ?>" id="nome" class="form-control"
+               placeholder="Digite o seu nome:"
+               aria-label="nome">
+    </div>
+    <br>
+    <div class="col">
+        <label for="email">Email:</label>
+        <input type="email" name='email' value="<?= $dados['email']; ?>" id="email" class="form-control"
+               placeholder="Digite o seu email:"
                aria-label="email">
     </div>
-        <br>
-            <div class="col">
-                <label for="email">Email:</label>
-                <input type="email" name='email' value="<?php echo $email ?>" id="email" class="form-control" placeholder="Digite o seu email:"
-                       aria-label="email">
-            </div>
-            <br>
-            <div class="col">
-                <label for="nivel">Cargo:</label>
-                <input type="text" name='cargo' value="<?php echo $cargo ?>" id="cargo" class="form-control" placeholder="Ex.: Dev, QA ..."
-                       aria-label="cargo">
-            </div>
-            <br>
-            <div class="col">
-                <label for="nivel">Nível:</label>
-                <input type="text" name='nivel' value="<?php echo $nivel ?>" id="nivel" class="form-control" placeholder="Jr, Pl, Sr ..."
-                       aria-label="nivel">
-            </div>
-        </div>
-        <br>
-        <input type="submit" value="Salvar" onclick="window.location.href = 'atualiza.php?<?php $sql?>'">
+    <br>
+    <div class="col">
+        <label for="nivel">Cargo:</label>
+        <input type="text" name='cargo' value="<?= $dados['cargo']; ?>" id="cargo" class="form-control"
+               placeholder="Ex.: Dev, QA ..."
+               aria-label="cargo">
+    </div>
+    <br>
+    <div class="col">
+        <label for="nivel">Nível:</label>
+        <input type="text" name='nivel' value="<?= $dados['nivel']; ?>" id="nivel" class="form-control"
+               placeholder="Jr, Pl, Sr ..."
+               aria-label="nivel">
+    </div>
+    </div>
+    <br>
+    <input type="submit" name="submit" value="Salvar">
 </form>
 </body>
 </html>
