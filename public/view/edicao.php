@@ -11,7 +11,6 @@ $stmt = $db->executeQuery('SELECT * FROM users_for_extract WHERE id=' . $_GET['i
 
 $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +48,7 @@ $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 <form method="POST" action="../../App/service/atualiza.php">
 
     <div class="row g-3">
-        <input type="hidden" name="id" value="<?= $dados['id']?>">
+        <input type="hidden" name="id" value="<?= $dados['id'] ?>">
         <label for="nome">Nome:</label>
         <input type="text" name='nome' value="<?= $dados['nome']; ?>" id="nome" class="form-control"
                placeholder="Digite o seu nome:"
@@ -82,4 +81,3 @@ $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 </form>
 </body>
 </html>
-

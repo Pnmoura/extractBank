@@ -1,7 +1,7 @@
 # ExtractBank
-## _O projeto se baseia em um CRUD feito com PHP e banco de dados MySQL_
+## _CRUD feito com PHP e banco de dados MySQL_
 
-O projeto se baseia em um CRUD feito com PHP em sua versão 8 (ou superior), banco de dados MySQL e arquitetura de projeto SINGLETON.
+Nesta primeira parte do projeto, o mesmo se baseia em um CRUD simples feito com PHP em sua versão 8 (ou superior), banco de dados MySQL e arquitetura de projeto SINGLETON.
 
 ## Orientações de execução do projeto
 
@@ -47,7 +47,23 @@ Caso você troque isso, pode ser que o projeto venha a apresentar algum erro de 
 
 > Observação²: De acordo com a senha do seu banco de dados local, defina no arquivo 'DatabaseConnection.php' as informações de acordo.
 
+> Observação³: Na possivel 3ª parte do projeto será implementado os métodos HTTP que permitirá via postman manuipular ao menos o DELETE via POSTMAN.
+
+<br>
+
+## Para execução via POSTMAN
+
+- O arquivo 'dadosJson.php' é o "controlador" desta operação, então após iniciar o projeto, dentro do POSTMAN acesse: 
+```sh
+localhost:8080/model/dadosJson.php
+```
+
+Ao executar o mesmo você terá todo o retorno do seu banco de dados em JSON separadamente.
+
 <br>
 
 #### Tecnologias usadas no projeto
 [![My Skills](https://skills.thijs.gg/icons?i=php,mysql)](https://skills.thijs.gg)
+
+#### Padrão de arquitetura:
+> SINGLETON

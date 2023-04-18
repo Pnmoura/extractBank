@@ -49,27 +49,26 @@ $db = DatabaseConnection::getInstance();
         <input type="nome" name='nome' id="email" class="form-control" placeholder="Digite o seu nome:"
                aria-label="email" required>
     </div>
-        <br>
-            <div class="col">
-                <label for="nivel">Email:</label>
-                <input type="email" name='email' id="email" class="form-control" placeholder="Digite o seu email:"
-                       aria-label="email" required pattern="^[a-zA-Z0-9._%+-]+@tradeup\.com$">
-            </div>
-            <br>
-            <div class="col">
-                <label for="nivel">Cargo:</label>
-                <input type="text" name='cargo' id="cargo" class="form-control" placeholder="Ex.: Dev, QA ..."
-                       aria-label="cargo" required>
-            </div>
-            <br>
-            <div class="col">
-                <label for="nivel">Nível:</label>
-                <input type="text" name='nivel' id="nivel" class="form-control" placeholder="Jr, Pl, Sr ..."
-                       aria-label="nivel" required>
-            </div>
-        </div>
-        <input type="submit" value="Enviar">
+    <br>
+    <div class="col">
+        <label for="nivel">Email:</label>
+        <input type="email" name='email' id="email" class="form-control" placeholder="Digite o seu email:"
+               aria-label="email" required pattern="^[a-zA-Z0-9._%+-]+@tradeup\.com$">
+    </div>
+    <br>
+    <div class="col">
+        <label for="nivel">Cargo:</label>
+        <input type="text" name='cargo' id="cargo" class="form-control" placeholder="Ex.: Dev, QA ..."
+               aria-label="cargo" required>
+    </div>
+    <br>
+    <div class="col">
+        <label for="nivel">Nível:</label>
+        <input type="text" name='nivel' id="nivel" class="form-control" placeholder="Jr, Pl, Sr ..."
+               aria-label="nivel" required>
+    </div>
+    </div>
+    <input type="submit" value="Enviar">
 </form>
 </body>
 </html>
-

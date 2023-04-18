@@ -29,7 +29,8 @@ $stmt = $db->executeQuery('SELECT * FROM users_for_extract');
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Cadastro</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -41,40 +42,44 @@ $stmt = $db->executeQuery('SELECT * FROM users_for_extract');
         </div>
     </div>
 </nav>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col" name="id">Id</th>
-            <th scope="col" name="nome">Nome</th>
-            <th scope="col" name="email">Email</th>
-            <th scope="col" name="cargo">Cargo</th>
-            <th scope="col" name="nivel">Nivel</th>
-            <th scope="col" name="nivel">Editar</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col" name="id">Id</th>
+        <th scope="col" name="nome">Nome</th>
+        <th scope="col" name="email">Email</th>
+        <th scope="col" name="cargo">Cargo</th>
+        <th scope="col" name="nivel">Nivel</th>
+        <th scope="col" name="nivel">Editar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <tr>
             <td name='id' id="id" type="text" class="editable-field" disabled="true"><?php echo $row['id']; ?></td>
-            <td name='nome' id="nome" type="text" class="editable-field" disabled="true"><?php echo $row['nome']; ?></td>
-            <td name='email' id="email" type="email" class="editable-field" disabled="true"><?php echo $row['email']; ?></td>
-            <td name='cargo' id="cargo" type="text" class="editable-field" disabled="true"><?php echo $row['cargo']; ?></td>
-            <td name='nivel' id="nivel"  type="text" class="editable-field" disabled="true"><?php echo $row['nivel']; ?></td>
+            <td name='nome' id="nome" type="text" class="editable-field"
+                disabled="true"><?php echo $row['nome']; ?></td>
+            <td name='email' id="email" type="email" class="editable-field"
+                disabled="true"><?php echo $row['email']; ?></td>
+            <td name='cargo' id="cargo" type="text" class="editable-field"
+                disabled="true"><?php echo $row['cargo']; ?></td>
+            <td name='nivel' id="nivel" type="text" class="editable-field"
+                disabled="true"><?php echo $row['nivel']; ?></td>
             <td name='button' class="actions-button">
-                <a href="edicao.php?id=<?= $row['id']?>">
+                <a href="edicao.php?id=<?= $row['id'] ?>">
                     <button type="submit" class="btn btn-outline-warning">Editar</button>
                 </a>
 
-                <a href="../../App/service/delete.php?id=<?= $row['id']?>">
+                <a href="../../App/service/delete.php?id=<?= $row['id'] ?>">
                     <button type="submit" class="btn btn-outline-danger">Excluir</button>
                 </a>
             </td>
         </tr>
         <?php
         $db->disconnect();
-        }?>
-        </tbody>
-    </table>
+    } ?>
+    </tbody>
+</table>
 
 <script src="../../src/edit.js"></script>
 
